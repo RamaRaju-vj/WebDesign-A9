@@ -1,47 +1,40 @@
-// AboutUs.js
 import React from 'react';
+import { Card, Container } from 'react-bootstrap';
 
-const AboutUs = () => {
+const Contact = () => {
+  const contactMethods = [
+    { type: 'Email', address: 'info@example.com' },
+    { type: 'Phone', number: '+1 (123) 456-7890' },
+    { type: 'Address', location: '123 Main Street, Cityville, USA' },
+  ];
+
   return (
-    <div className="container mt-5">
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title">About Us</h2>
-          <p className="card-text">
-            We are a passionate team dedicated to providing innovative solutions and exceptional services. Our diverse team
-            is committed to making a positive impact and shaping the future.
-          </p>
+    <Container className="mt-5">
+      <Card>
+        <Card.Body>
+          <Card.Title>Contact Us</Card.Title>
+          <Card.Text>
+            Feel free to reach out to us. We are here to assist you.
+          </Card.Text>
 
           <div className="row mt-4">
-            <div className="col-md-4">
-              <div className="card mb-4">
-                <div className="card-body">
-                  <h5 className="card-title">John Doe</h5>
-                  <p className="card-text">CEO</p>
-                </div>
+            {contactMethods.map((contact, index) => (
+              <div key={index} className="col-md-4">
+                <Card className="mb-4">
+                  <Card.Body>
+                    <Card.Title>{contact.type}</Card.Title>
+                    {contact.address && <Card.Text>{contact.address}</Card.Text>}
+                    {contact.number && <Card.Text>{contact.number}</Card.Text>}
+                    {contact.location && <Card.Text>{contact.location}</Card.Text>}
+                  </Card.Body>
+                </Card>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card mb-4">
-                <div className="card-body">
-                  <h5 className="card-title">Jane Smith</h5>
-                  <p className="card-text">CTO</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card mb-4">
-                <div className="card-body">
-                  <h5 className="card-title">Bob Johnson</h5>
-                  <p className="card-text">Lead Developer</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
-export default AboutUs;
+export default Contact;

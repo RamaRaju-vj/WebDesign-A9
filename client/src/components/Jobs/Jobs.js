@@ -1,5 +1,5 @@
-// Jobs.js
 import React from 'react';
+import { Card, Container } from 'react-bootstrap';
 
 const Jobs = () => {
   const jobListings = [
@@ -9,28 +9,30 @@ const Jobs = () => {
   ];
 
   return (
-    <div className="container mt-5">
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title">Job Opportunities</h2>
-          <p className="card-text">Explore exciting job opportunities with us. Join our team and contribute to innovative projects.</p>
+    <Container className="mt-5">
+      <Card>
+        <Card.Body>
+          <Card.Title>Job Opportunities</Card.Title>
+          <Card.Text>
+            Explore exciting job opportunities with us. Join our team and contribute to innovative projects.
+          </Card.Text>
 
           <div className="row mt-4">
             {jobListings.map((job, index) => (
               <div key={index} className="col-md-4">
-                <div className="card mb-4">
-                  <div className="card-body">
-                    <h5 className="card-title">{job.title}</h5>
-                    <p className="card-text">Location: {job.location}</p>
-                    <p className="card-text">Requirements: {job.requirements}</p>
-                  </div>
-                </div>
+                <Card className="mb-4">
+                  <Card.Body>
+                    <Card.Title>{job.title}</Card.Title>
+                    <Card.Text>Location: {job.location}</Card.Text>
+                    <Card.Text>Requirements: {job.requirements}</Card.Text>
+                  </Card.Body>
+                </Card>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 

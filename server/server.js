@@ -12,10 +12,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/a8', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/a9', { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Use User Routes
-app.use('/api/user', userRoutes);
+// Use User Routes for login and register
+app.use('/user', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

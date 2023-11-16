@@ -1,6 +1,5 @@
-// App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { Route, Link, Outlet, Routes, BrowserRouter } from 'react-router-dom';
 
 import Home from './components/Home/Home';
 import AboutUs from './components/AboutUs/AboutUs';
@@ -13,10 +12,11 @@ const App = () => {
 
   const handleLogin = () => {
     setLoggedIn(true);
+    // You can perform any other necessary actions upon login here
   };
 
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <nav>
           <ul>
@@ -37,8 +37,15 @@ const App = () => {
                 <Link to="/login">Login</Link>
               </li>
             )}
+            {isLoggedIn && (
+              <li>
+                <h1>Welcome, User!</h1>
+              </li>
+            )}
           </ul>
         </nav>
+
+        <Outlet />
 
         <hr />
 
@@ -48,14 +55,11 @@ const App = () => {
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/contact" element={<Contact />} />
           {!isLoggedIn && (
-            <Route
-              path="/login"
-              element={<Login onLogin={handleLogin} />}
-            />
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
           )}
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 

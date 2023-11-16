@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #5c719a;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,18 +45,18 @@
 
 /* app.css */
 body {
-  background-color: #000000; /* Default background color for all pages */
+  background-color: #69dfac; /* Default background color for all pages */
 }
 
 /* Home page */
 .jumbotron {
-  background-color: #1ba376;
+  background-color: #020605;
   color: #ffffff;
 }
 
 /* AboutUs page */
 .card.text-center {
-  background-color: #007bff;
+  background-color: #88d7f4;
   color: #ffffff;
 }
 

@@ -16,7 +16,44 @@ async function loginUser(email, password) {
   return user;
 }
 
+async function updateUserDetails(email, name, password) {
+  const user = await UserModel.findOne({ email });
+
+  if (!user) {
+    return null; // Handle accordingly if user doesn't exist
+  }
+
+  if (name) {
+    user.name = name.length >= 6 ? name : user.name;
+  }
+
+  if (password) {
+    user.password = password.length >= 6 ? await bcrypt.hash(password, 10) : user.password;
+  }
+
+  await user.save();
+  return user;
+}
+
+async function deleteUserByEmail(email) {
+  const user = await UserModel.findOne({ email });
+
+  if (!user) {
+    return null; // Handle accordingly if user doesn't exist
+  }
+
+  await UserModel.deleteOne({ _id: user._id });
+  return user;
+}
+
+async function getAllUsers() {
+  return await UserModel.find({}, { name: 1, email: 1, password: 1, _id: 0 });
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  updateUserDetails,
+  deleteUserByEmail,
+  getAllUsers,
 };
