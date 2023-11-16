@@ -5,7 +5,7 @@ const LoginPage = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Updated state to track logged-in status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -17,8 +17,8 @@ const LoginPage = ({ onLogin }) => {
       if (response.status === 200) {
         setLoginStatus('User logged in');
         onLogin();
-        setIsLoggedIn(true); // Set logged-in status to true after successful login
-        // localStorage.setItem('token', response.data.token); // Uncomment if token is sent in the response
+        setIsLoggedIn(true);
+        // localStorage.setItem('token', response.data.token);
       } else {
         setLoginStatus('Login failed');
       }
@@ -34,31 +34,51 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container">
-      {!isLoggedIn && ( // Render the login form if not logged in
-        <>
-          <h2>Login</h2>
-          <form>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
-            <button type="button" onClick={handleLogin}>
-              Login
-            </button>
-            {loginStatus && <p>{loginStatus}</p>}
-          </form>
-        </>
+    <div className="container mt-5">
+      {!isLoggedIn && (
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-body">
+                <h2 className="card-title text-center mb-4">Login</h2>
+                <form>
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-control"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <button
+                      type="button"
+                      onClick={handleLogin}
+                      className="btn btn-primary btn-block"
+                    >
+                      Login
+                    </button>
+                  </div>
+                  {loginStatus && <p className="text-danger">{loginStatus}</p>}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
       {/* You can add more logic here to conditionally render other content after login */}
     </div>

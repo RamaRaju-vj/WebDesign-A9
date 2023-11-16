@@ -39,7 +39,7 @@ const App = () => {
             )}
             {isLoggedIn && (
               <li>
-                <h1>Welcome, User!</h1>
+                <h1 className="text-white">Welcome, User!</h1>
               </li>
             )}
           </ul>
